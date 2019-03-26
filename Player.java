@@ -32,6 +32,8 @@ public class Player{
     }
     public void printPlayer(){
         System.out.println(this.name +" "+this.order+" $"+ this.cash);
-        
+    }
+    public void printHand(){
+        System.out.println(this.name+": "+this.privateCard[0].suit+this.privateCard[0].val+" "+this.privateCard[1].suit+this.privateCard[1].val);
     }
 }

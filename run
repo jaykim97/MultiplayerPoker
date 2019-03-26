@@ -1,0 +1,6 @@
+javac Card.java
+javac Player.java
+javac game.java
+javac House.java
+java game
+

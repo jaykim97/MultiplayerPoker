@@ -3,39 +3,47 @@ import java.util.Scanner;
 import java.util.Collections;
 public class game{
     public static void main(String[] args){
-        Card[] deck = new Card[52];
-        genDeck(deck);
+        ArrayList<Card> deck = genDeck();
         ArrayList<Player> players = genPlayer();
         for(Player p: players){
+            distCards(p, deck);
             p.printPlayer();
+            p.printHand();
         }
-        printDeck(deck);
+        House house = new House(0);
+        for(int i=0;i<3;i++){
+            house.setHouseCard(deck);
+            house.printHouse();
+        }
+
     }
 
+    public static void distCards(Player player, ArrayList<Card> deck){
+        player.setCard(deck.get(0),deck.get(1));
+        deck.remove(0);
+        deck.remove(0);
+    }
 
-    public static void printDeck(Card[] deck){
+    
+
+    public static void printDeck(ArrayList<Card> deck){
         int ct = 0;
         for(Card c: deck){
-            System.out.println(c.suit+" "+c.val);
+            System.out.println(c.suit+c.val);
             ct+=1;
         }
     }
-    public static void genDeck(Card[] deck){
-        ArrayList<Card> temp = new ArrayList<>();
+    public static ArrayList<Card> genDeck(){
+        ArrayList<Card> deck = new ArrayList<>();
         char[] suit={'S','H','D','C'};
         String[] val={"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
         for(char s:suit){
             for(String v: val){
-                temp.add(new Card(s,v));
+                deck.add(new Card(s,v));
             }
         }  
-        Collections.shuffle(temp);
-        int i=0;
-        for(Card c:temp){
-            deck[i]=c;
-            i++;
-        }
-        return;
+        Collections.shuffle(deck);
+        return deck;
     }
 
     public static ArrayList<Player> genPlayer(){
