@@ -1,12 +1,10 @@
 public class Player{
     public String name;
-    public int order;
     private int cash;
     private boolean active;
     private Card[] privateCard= new Card[2];
-    public Player(String name, int order,int cash){
+    public Player(String name,int cash){
         this.name = name;
-        this.order = order;
         this.cash = cash;
         this.active = false;
     }
@@ -31,7 +29,7 @@ public class Player{
         return this.active;
     }
     public void printPlayer(){
-        System.out.println(this.name +" "+this.order+" $"+ this.cash);
+        System.out.println(this.name +" $"+ this.cash);
     }
     public void printHand(){
         System.out.println(this.name+": "+this.privateCard[0].suit+this.privateCard[0].val+" "+this.privateCard[1].suit+this.privateCard[1].val);

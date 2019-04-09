@@ -18,6 +18,7 @@ public class game{
 
     }
 
+    //distribute card to player
     public static void distCards(Player player, ArrayList<Card> deck){
         player.setCard(deck.get(0),deck.get(1));
         deck.remove(0);
@@ -25,7 +26,7 @@ public class game{
     }
 
     
-
+    //print out the deck of card randomly generated
     public static void printDeck(ArrayList<Card> deck){
         int ct = 0;
         for(Card c: deck){
@@ -33,6 +34,8 @@ public class game{
             ct+=1;
         }
     }
+
+    //random deck generated
     public static ArrayList<Card> genDeck(){
         ArrayList<Card> deck = new ArrayList<>();
         char[] suit={'S','H','D','C'};
@@ -46,6 +49,7 @@ public class game{
         return deck;
     }
 
+    //create players 
     public static ArrayList<Player> genPlayer(){
         Scanner scanner = new Scanner(System.in);
         System.out.print("Number of Players: ");
@@ -56,7 +60,7 @@ public class game{
         scanner.nextLine();
         for(int i=0;i<num;i++){
             System.out.print("Player"+i+":");
-            players.add(new Player(scanner.nextLine(),i,cash));
+            players.add(new Player(scanner.nextLine(),cash));
         }
         scanner.close();
         return players;

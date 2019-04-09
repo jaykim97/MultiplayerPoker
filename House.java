@@ -6,6 +6,7 @@ public class House{
     public House(int phase){
         this.phase = phase;
     }
+    //phase used to either dist 1 cards or 3 cards
     public void setHouseCard(ArrayList<Card> deck){
         if (this.phase==0){
             for(int i=0;i<3;i++){
@@ -22,7 +23,7 @@ public class House{
         else{
             this.house.add(deck.get(0));
             deck.remove(0);
-            this.phase+=4;
+            this.phase+=1;
         }
     }
     public void printHouse(){
