@@ -1,7 +1,5 @@
-javac Card.java
+javac Deck.java
+javac Server.java
 javac Player.java
-javac game.java
-javac House.java
-#javac Board.java
-java game
-
+javac Card.java
+java Server
