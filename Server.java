@@ -100,14 +100,10 @@ public class Server{
             }
         }
         //sort the each suits
-        if(diamonds.size()>1)
-            valSort(diamonds, 0, diamonds.size()-1);
-        if(clubs.size()>1)
-            valSort(clubs, 0, clubs.size()-1);
-        if(hearts.size()>1)
-            valSort(hearts, 0, hearts.size()-1);
-        if(spade.size()>1)
-            valSort(spade, 0, spade.size()-1);
+        diamonds = valSort(diamonds);
+        clubs=valSort(clubs);
+        hearts=valSort(hearts);
+        spade=valSort(spade);
         //merge all the suits in order of spade, diamonds,club,hearts
         temp.addAll(spade);
         temp.addAll(diamonds);
@@ -117,54 +113,55 @@ public class Server{
         return temp;
 
     }
-
-    //l= first card index r = last card index
-    public static void valSort(ArrayList<Card> cards, int l, int r){
-        if(cards.get(l).getIntVal()<cards.get(r).getIntVal()){
-            int m = (l+r)/2;
-            valSort(cards, l, m);
-            valSort(cards, m+1,l);
-            merge(cards,l,m,r);
+    public static ArrayList<Card> valSort(ArrayList<Card> cards){
+        ArrayList<Card> left = new ArrayList<>();
+        ArrayList<Card> right = new ArrayList<>();
+        int center;
+        if(cards.size()<=1){
+            return cards;
         }
+        else{
+            center = cards.size()/2;
+            for(int i =0;i<center;i++){
+                left.add(cards.get(i));
+            }
+            for(int i=center; i<cards.size();i++){
+                right.add(cards.get(i));
+            }
+            left = valSort(left);
+            right = valSort(right);
+            merge(left,right,cards);
+        }
+        return cards;
     }
 
-    public static void merge(ArrayList<Card> cards, int l, int m, int r){
-        int n1 = m-l+1;
-        int n2=r-m;
+    private static void merge(ArrayList<Card> left, ArrayList<Card> right, ArrayList<Card> cards){
+        int leftIndex = 0, rightIndex=0, cardsIndex=0;
 
-        Card L[] = new Card[n1];
-        Card R[] = new Card[n2];
-
-        for(int i=0;i<n1;++i)
-            L[i]=cards.get(l+i);
-        for(int j=0;j<n2;++j)
-            R[j]=cards.get(m+1+j);
-        
-        int i=0,j=0;
-        int k=l;
-        while(i<n1 && j<n2){
-            if(L[i].getIntVal()<=R[j].getIntVal()){
-                cards.set(k,L[i]);
-                i++;
+        while (leftIndex<left.size() && rightIndex < right.size()){
+            if( (left.get(leftIndex).getIntVal() > right.get(rightIndex).getIntVal())){
+                cards.set(cardsIndex, left.get(leftIndex));
+                leftIndex++;
             }
             else{
-                cards.set(k,R[j]);
-                j++;
+                cards.set(cardsIndex,right.get(rightIndex));
+                rightIndex++;
             }
-            k++;
+            cardsIndex++;
         }
-        while(i<n1){
-            cards.set(k,L[i]);
-            i++;
-            k++;
+        ArrayList<Card> rest;
+        int restIndex;
+        if(leftIndex>=left.size()){
+            rest=right;
+            restIndex=rightIndex;
         }
-        while(j<n2){
-            cards.set(k,R[j]);
-            j++;
-            k++;
+        else{
+            rest=left;
+            restIndex=leftIndex;
         }
-        
+        for(int i=restIndex; i<rest.size(); i++){
+            cards.set(cardsIndex,rest.get(i));
+            cardsIndex++;
+        }
     }
-
-
 }

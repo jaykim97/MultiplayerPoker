@@ -16,25 +16,32 @@ public class Card{
 
 
     public int getIntVal(){
-        char cSuit = this.suit;
+        char cVal = this.val;
         int intVal=0;
-        if(Character.isDigit(cSuit)){
-            intVal = Character.getNumericValue(cSuit);
+        if(Character.isDigit(cVal)){
+            intVal = Character.getNumericValue(cVal);
+            System.out.println("Num value is of "+cVal+" is"+intVal);
         }
         else{
-            switch(cSuit){
+            switch(cVal){
                 case 'X':
                     intVal=10;
+                    break;
                 case 'J':
                     intVal=11;
+                    break;
                 case 'Q':
                     intVal=12;
+                    break;
                 case 'K':
                     intVal=13;
+                    break;
                 case 'A':
                     intVal=14;
+                    break;
             }
         }
+        System.out.println("Num value is of "+cVal+" is"+intVal);
         return intVal;
     }
 
