@@ -10,9 +10,9 @@ public class Deck{
     public void genDeck(){
         // ArrayList<Card>  = new ArrayList();
         char[] suit={'S','H','D','C'};
-        String[] val={"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
+        char[] val={'A','2','3','4','5','6','7','8','9','X','J','Q','K'};
         for(char s:suit){
-            for(String v: val){
+            for(char v: val){
                 this.cards.add(new Card(s,v));
             }
         }

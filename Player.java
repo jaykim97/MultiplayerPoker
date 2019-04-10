@@ -23,6 +23,9 @@ public class Player{
         System.out.println(this.cash);
         this.hand[0].print();
         this.hand[1].print();
-        
+    }
+
+    public Card[] getHand(){
+        return this.hand;
     }
 }

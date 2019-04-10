@@ -33,4 +33,8 @@ public class Dealer{
         }
         incPhase();
     }
+    public Card[] getComCards(){
+        return this.communityCard;
+    }
+
 }
