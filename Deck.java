@@ -27,7 +27,7 @@ public class Deck{
 
     public void printAll(){
         for(Card c : this.cards){
-            System.out.println(c.suit + " " + c.val);
+            c.print();
         }
     }
 }

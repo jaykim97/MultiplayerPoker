@@ -20,7 +20,6 @@ public class Card{
         int intVal=0;
         if(Character.isDigit(cVal)){
             intVal = Character.getNumericValue(cVal);
-            System.out.println("Num value is of "+cVal+" is"+intVal);
         }
         else{
             switch(cVal){
@@ -41,13 +40,15 @@ public class Card{
                     break;
             }
         }
-        System.out.println("Num value is of "+cVal+" is"+intVal);
         return intVal;
     }
 
 
 
     public void print(){
-        System.out.println(this.suit + " " + this.val);
+        if(this.val == 'X')
+            System.out.println(this.suit + " 10");
+        else
+            System.out.println(this.suit + " " + this.val);
     }
 }
